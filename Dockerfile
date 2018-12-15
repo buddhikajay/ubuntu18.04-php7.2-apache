@@ -13,19 +13,19 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     apache2 \
     # Install php 7.2
     libapache2-mod-php7.2 \
-    php7.0-cli \
-    php7.0-json \
-    php7.0-curl \
-    php7.0-fpm \
-    php7.0-gd \
-    php7.0-ldap \
-    php7.0-mbstring \
-    php7.0-mysql \
-    php7.0-soap \
-    php7.0-sqlite3 \
-    php7.0-xml \
-    php7.0-zip \
-    php7.0-intl \
+    php7.2-cli \
+    php7.2-json \
+    php7.2-curl \
+    php7.2-fpm \
+    php7.2-gd \
+    php7.2-ldap \
+    php7.2-mbstring \
+    php7.2-mysql \
+    php7.2-soap \
+    php7.2-sqlite3 \
+    php7.2-xml \
+    php7.2-zip \
+    php7.2-intl \
     php-imagick \
     # Install tools
     openssl \
@@ -41,7 +41,7 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    git subversion make g++ python2.7 curl php7.0-cli php7.0-dev chrpath wget bzip2 && \
+    git subversion make g++ python2.7 curl php7.2-cli php7.2-dev chrpath wget bzip2 && \
     ln -s /usr/bin/python2.7 /usr/bin/python && \
     \
     git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git /tmp/depot_tools && \
@@ -63,11 +63,11 @@ RUN apt-get update && \
     cd /usr/local/src/v8js && phpize && ./configure --with-v8js=/usr/local && \
     export NO_INTERACTION=1 && make all -j4 && make test install && \
     \
-    echo extension=v8js.so > /etc/php/7.0/cli/conf.d/99-v8js.ini && \
+    echo extension=v8js.so > /etc/php/7.2/cli/conf.d/99-v8js.ini && \
     \
     cd /tmp && \
     rm -rf /tmp/depot_tools /usr/local/src/v8 /usr/local/src/v8js && \
-    apt-get remove -y subversion make g++ python2.7 curl php7.0-dev chrpath wget bzip2 && \
+    apt-get remove -y subversion make g++ python2.7 curl php7.2-dev chrpath wget bzip2 && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -81,7 +81,7 @@ RUN locale-gen en_US.UTF-8 en_GB.UTF-8 de_DE.UTF-8 es_ES.UTF-8 fr_FR.UTF-8 it_IT
 RUN a2enmod rewrite expires
 
 # Configure PHP
-ADD typo3.php.ini /etc/php/7.0/apache2/conf.d/
+ADD typo3.php.ini /etc/php/7.2/apache2/conf.d/
 
 # Configure vhost
 ADD typo3.default.conf /etc/apache2/sites-enabled/000-default.conf
