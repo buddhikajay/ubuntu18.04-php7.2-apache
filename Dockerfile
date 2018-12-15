@@ -39,7 +39,6 @@ RUN add-apt-repository ppa:ondrej/php && \
     iputils-ping \
     locales \
     sqlite3 \
-    ln -s /usr/bin/python2.7 /usr/bin/python && \
     \
     git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git /tmp/depot_tools && \
     export PATH="$PATH:/tmp/depot_tools" && \
