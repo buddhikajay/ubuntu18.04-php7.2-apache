@@ -4,6 +4,7 @@ MAINTAINER t3kit
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
+    add-apt-repository ppa:ondrej/php && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     git subversion make g++ python2.7 curl php7.2-cli php7.2-dev chrpath wget bzip2 && \
     apt-utils \
