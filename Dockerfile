@@ -37,6 +37,8 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     iputils-ping \
     locales \
     sqlite3 \
+    #for git clone
+    ca-certificates \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && \
