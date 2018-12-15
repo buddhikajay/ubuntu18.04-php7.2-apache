@@ -3,8 +3,9 @@ FROM phusion/baseimage:latest
 MAINTAINER t3kit
 
 ENV DEBIAN_FRONTEND=noninteractive
-
-RUN apt-get update && apt-get install -yq --no-install-recommends \
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    git subversion make g++ python2.7 curl php7.2-cli php7.2-dev chrpath wget bzip2 && \
     apt-utils \
     curl \
     # Install git
@@ -37,13 +38,6 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     iputils-ping \
     locales \
     sqlite3 \
-    #for git clone
-    ca-certificates \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    git subversion make g++ python2.7 curl php7.2-cli php7.2-dev chrpath wget bzip2 && \
     ln -s /usr/bin/python2.7 /usr/bin/python && \
     \
     git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git /tmp/depot_tools && \
