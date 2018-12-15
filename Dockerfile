@@ -3,8 +3,7 @@ FROM phusion/baseimage:latest
 MAINTAINER t3kit
 
 ENV DEBIAN_FRONTEND=noninteractive
-RUN mkdir /tmp && \
-    add-apt-repository ppa:ondrej/php && \
+RUN add-apt-repository ppa:ondrej/php && \
     apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     git subversion make g++ python2.7 curl php7.2-cli php7.2-dev chrpath wget bzip2 \
@@ -40,7 +39,7 @@ RUN mkdir /tmp && \
     iputils-ping \
     locales \
     sqlite3 \
-    \
+    && \
     git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git /tmp/depot_tools && \
     export PATH="$PATH:/tmp/depot_tools" && \
     \
